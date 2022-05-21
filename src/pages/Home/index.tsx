@@ -3,12 +3,19 @@ import IButton from "components/general/IButton";
 import { IInput } from "components/general";
 import React from "react";
 import { useI18Next } from "i18n";
+import { useSendSMSMutation } from "store/service";
 
 const Home = () => {
   const { t } = useI18Next();
+  const [sendSMS] = useSendSMSMutation();
 
-  const handleFinish = (params: { mobile: string }) => {
-    console.log(params);
+  const handleFinish = async ({ mobile }: { mobile: string }) => {
+    try {
+      const data = await sendSMS({ mobile });
+      console.log(data);
+    } catch (error) {
+      console.log(error, "AZ INJAAAA");
+    }
   };
 
   return (
@@ -20,7 +27,9 @@ const Home = () => {
 
         <div className="animate__animated animate__fadeInUp animate__delay-0.4s p-4 mt-4 border border-white rounded-lg">
           <p className=" font-semibold text-white">{t("general.loginSlug")}</p>
-          <Formik initialValues={{ mobile: "" }} onSubmit={handleFinish}>
+          <Formik
+            initialValues={{ mobile: "09126894100" }}
+            onSubmit={handleFinish}>
             {({ handleSubmit, handleChange, handleBlur, values }) => (
               <form autoComplete="off" onSubmit={handleSubmit}>
                 <IInput

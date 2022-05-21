@@ -1,4 +1,5 @@
 import "assets/css/main.min.css";
+import "assets/css/ReactToastify.css";
 import "animate.css/animate.css";
 import "i18n";
 
