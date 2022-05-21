@@ -1,0 +1,2 @@
+@import url("./../fonts/vazir/Vazirmatn-font-face.css");@tailwind base;@tailwind components;@tailwind utilities;.app-input{@apply w-full p-2 bg-inherit border border-white rounded-lg outline-none placeholder:text-white placeholder:text-opacity-50  text-center text-white}
+/*# sourceMappingURL=main.min.css.map */
