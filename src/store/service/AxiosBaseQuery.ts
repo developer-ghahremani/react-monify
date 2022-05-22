@@ -1,13 +1,15 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 
 import { BaseQueryFn } from "@reduxjs/toolkit/dist/query";
+import constant from "constant";
 import { showMessage } from "utils/message";
 
-axios.interceptors.request.use((cnf) => {
+const api = axios.create({ baseURL: constant.baseUrl });
+api.interceptors.request.use((cnf) => {
   return cnf;
 });
 
-axios.interceptors.response.use(undefined, (error) => {
+api.interceptors.response.use(undefined, (error) => {
   if (
     error &&
     error.response &&
@@ -22,34 +24,58 @@ axios.interceptors.response.use(undefined, (error) => {
         showMessage(message, { type: "error" });
       });
   }
+
   return Promise.reject(error);
 });
 
-const axiosBaseQuery =
-  (
-    { baseUrl }: { baseUrl: string } = { baseUrl: "" }
-  ): BaseQueryFn<
-    {
-      url: string;
-      method: AxiosRequestConfig["method"];
-      data?: AxiosRequestConfig["data"];
-      params?: AxiosRequestConfig["params"];
-    },
-    unknown,
-    unknown
-  > =>
-  async ({ url, method, data, params }) => {
+const axiosBaseQuery = (): BaseQueryFn<
+  {
+    url: string;
+    method: AxiosRequestConfig["method"];
+    data?: AxiosRequestConfig["data"];
+    params?: AxiosRequestConfig["params"];
+  },
+  unknown,
+  unknown
+> => {
+  // return axios({ url: baseUrl + url, method, data, params });
+  // return ({ url, method, data, params, ...rest }) =>
+  //   new Promise(async (resolve, reject) => {
+  //     try {
+  //       const result = await api({
+  //         url,
+  //         method,
+  //         data,
+  //         params,
+  //       });
+  //       resolve(result);
+  //     } catch (axiosError) {
+  //       console.log(axiosError, "AXXX ERROR");
+  //       let err = axiosError as AxiosError;
+  //       reject({ error: err, ...err, data: "REZA", status: 256 });
+  //       // reject({
+  //       //   status: err.response?.status,
+  //       //   data: err.response?.data || err.message,
+  //       //   name: "REZA",
+  //       // });
+  //     }
+  //   });
+
+  return async ({ url, method, data, params }) => {
     try {
-      const result = await axios({ url: baseUrl + url, method, data, params });
+      const result = await api({ url, method, data, params });
       return { data: result.data };
     } catch (axiosError) {
       let err = axiosError as AxiosError;
 
       return {
-        status: err.response?.status,
-        data: err.response?.data || err.message,
-        ...err,
+        error: {
+          status: err.response?.status,
+          data: err.response?.data || err.message,
+          ...err,
+        },
       };
     }
   };
+};
 export default axiosBaseQuery;

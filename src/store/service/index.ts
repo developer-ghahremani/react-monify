@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+import { UserModel } from "models/user.model";
 import axiosBaseQuery from "./AxiosBaseQuery";
-import constant from "constant";
 
 const service = createApi({
-  baseQuery: axiosBaseQuery({ baseUrl: constant.baseUrl }),
+  baseQuery: axiosBaseQuery(),
+  // baseQuery: fetchBaseQuery({ baseUrl: constant.baseUrl }),
+
   reducerPath: "service",
   endpoints: (builder) => ({
     sendSMS: builder.mutation<any, { mobile: string }>({
@@ -14,8 +16,15 @@ const service = createApi({
         data: { mobile },
       }),
     }),
+    login: builder.mutation<UserModel, { password: string; mobile: string }>({
+      query: (data) => ({
+        url: "/auth/login",
+        method: "Post",
+        data,
+      }),
+    }),
   }),
 });
 
-export const { useSendSMSMutation } = service;
+export const { useSendSMSMutation, useLoginMutation } = service;
 export default service;

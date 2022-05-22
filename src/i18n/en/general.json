@@ -4,5 +4,7 @@
   "monify": "Monify",
   "loginSlug": "Enter your number to login or create an account.",
   "mobile": "Mobile",
-  "submit": "Submit"
+  "submit": "Submit",
+  "code": "Code",
+  "enterCode": "Enter the SMS code"
 }

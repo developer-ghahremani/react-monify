@@ -1,2 +1,3 @@
 import * as general from "./general.json";
-export default { general };
+import * as messages from "./messages.json";
+export default { general, messages };

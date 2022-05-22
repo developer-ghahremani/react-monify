@@ -2,9 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import Pages from "pages";
 import React from "react";
 
-type Props = {};
-
-const Monify = (props: Props) => {
+const Monify = () => {
   return (
     <BrowserRouter>
       <Pages />
