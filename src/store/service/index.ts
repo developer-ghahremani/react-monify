@@ -23,8 +23,12 @@ const service = createApi({
         data,
       }),
     }),
+    whoAmI: builder.mutation<UserModel, void>({
+      query: () => ({ url: "/auth/who-am-i", method: "Get" }),
+    }),
   }),
 });
 
-export const { useSendSMSMutation, useLoginMutation } = service;
+export const { useSendSMSMutation, useLoginMutation, useWhoAmIMutation } =
+  service;
 export default service;

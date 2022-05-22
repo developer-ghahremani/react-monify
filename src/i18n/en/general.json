@@ -6,5 +6,7 @@
   "mobile": "Mobile",
   "submit": "Submit",
   "code": "Code",
-  "enterCode": "Enter the SMS code"
+  "enterCode": "Enter the SMS code",
+  "userDetail": "User detail",
+  "logOut": "Log out"
 }

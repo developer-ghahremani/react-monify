@@ -1,14 +1,18 @@
+import store, { persistor } from "store";
+
 import Monify from "Monify";
+import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import store from "store";
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Monify />
-      <ToastContainer position="bottom-right" />
+      <PersistGate loading={null} persistor={persistor}>
+        <Monify />
+        <ToastContainer position="bottom-right" />
+      </PersistGate>
     </Provider>
   );
 };

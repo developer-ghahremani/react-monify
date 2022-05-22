@@ -7,7 +7,7 @@ const MainLayout = (props: Props) => {
   return (
     <div>
       <Navbar />
-      {props.children}
+      <div className="lg:max-w-4xl lg:mx-auto mx-12">{props.children}</div>
     </div>
   );
 };
