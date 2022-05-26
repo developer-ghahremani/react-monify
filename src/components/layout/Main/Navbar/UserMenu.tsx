@@ -1,22 +1,32 @@
 import React, { useState } from "react";
+import { useAppDispatch, useAppSelector } from "store";
 
 import { UserIcon } from "components/icons";
-import { useAppSelector } from "store";
+import { pageNames } from "constant";
+import { setUser } from "store/user";
 import { useI18Next } from "i18n";
+import { useNavigate } from "react-router-dom";
 
 const UserMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const navigate = useNavigate();
   const { t } = useI18Next();
   const user = useAppSelector((s) => s.user);
+  const dispatch = useAppDispatch();
 
   const options = [
     {
       title: t("general.userDetail"),
-      onClick: () => {},
+      onClick: () => {
+        navigate(pageNames.userDetail);
+      },
     },
     {
       title: t("general.logOut"),
-      onClick: () => {},
+      onClick: () => {
+        dispatch(setUser({}));
+        navigate(pageNames.auth);
+      },
     },
   ];
 
@@ -40,7 +50,7 @@ const UserMenu = () => {
 
           <div className="h-[1px] my-2 bg-darkGray mx-4 w-full"></div>
           {options.map((item, index, array) => (
-            <div key={item.title} className="w-[100%]">
+            <div key={item.title} className="w-[100%]" onClick={item.onClick}>
               <p className="text-center cursor-pointer">{item.title}</p>
               {index !== array.length - 1 && (
                 <div className="h-[2px] my-2 bg-white rounded-full mx-4"></div>

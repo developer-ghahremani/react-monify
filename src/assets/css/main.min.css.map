@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "ACAA,OAAO,CAAC,+CAAI,CAEZ,SAAS,CAAT,IAAS,CACT,SAAS,CAAT,UAAS,CACT,SAAS,CAAT,SAAS,CCJT,AAAA,UAAU,AAAC,CACT,MAAM,CAAN,4IAAM,CACP",
+    "mappings": "ACAA,OAAO,CAAC,+CAAI,CAEZ,SAAS,CAAT,IAAS,CACT,SAAS,CAAT,UAAS,CACT,SAAS,CAAT,SAAS,CCJT,AAAA,UAAU,AAAC,CACT,MAAM,CAAN,sIAAM,CACP",
     "sources": [
         "../sass/main.scss",
         "../sass/_initial.scss",

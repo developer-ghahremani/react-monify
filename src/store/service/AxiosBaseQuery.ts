@@ -10,7 +10,7 @@ const api = axios.create({ baseURL: constant.baseUrl });
 api.interceptors.request.use((cnf) => {
   const headers: any = cnf.headers || {};
   if (store.getState().user.token)
-    headers.authorization = store.getState().user.token;
+    headers.Authorization = store.getState().user.token;
   return cnf;
 });
 

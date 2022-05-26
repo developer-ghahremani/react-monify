@@ -30,7 +30,7 @@ const SendSMS = () => {
           <form autoComplete="off" onSubmit={handleSubmit}>
             <IInput
               name="mobile"
-              className="text-bold mt-4 text-xl tracking-widest"
+              inputClassName="text-bold mt-4 text-xl tracking-widest text-white"
               placeholder={t("general.mobile")}
               onChange={handleChange}
               onBlur={handleBlur}

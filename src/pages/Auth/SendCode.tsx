@@ -48,7 +48,7 @@ const SendCode = () => {
             <form autoComplete="off" onSubmit={handleSubmit}>
               <IInput
                 name="code"
-                className="text-bold mt-4 text-xl tracking-widest"
+                inputClassName="text-bold mt-4 text-xl tracking-widest text-white"
                 placeholder={t("general.code")}
                 onChange={handleChange}
                 onBlur={handleBlur}

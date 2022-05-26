@@ -1,9 +1,30 @@
 import { InputHTMLAttributes } from "react";
 
-interface Props extends InputHTMLAttributes<{}> {}
+interface Props extends InputHTMLAttributes<{}> {
+  label?: string;
+  inputClassName?: string;
+  error?: string;
+}
 
-const IInput = ({ className, ...props }: Props) => {
-  return <input className={`app-input ${className}`} {...props} />;
+const IInput = ({
+  className,
+  inputClassName,
+  label,
+  error,
+  ...props
+}: Props) => {
+  return (
+    <div className={className}>
+      <p>{label}</p>
+      <input
+        className={`app-input ${
+          error ? "!border-red-900" : ""
+        } ${inputClassName}`}
+        {...props}
+      />
+      <p className="text-xs font-bold text-red-900">{error}</p>
+    </div>
+  );
 };
 
 export default IInput;

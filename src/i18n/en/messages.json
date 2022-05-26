@@ -1,5 +1,6 @@
 {
   "codeSent": "Code sent successfully",
   "sentCodeSuccessfully": "Sent code successfully",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "required": "{{fieldName}} is required"
 }

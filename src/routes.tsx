@@ -1,5 +1,6 @@
 import Auth from "pages/Auth";
 import Home from "pages/Home";
+import UserDetail from "pages/UserDetail";
 import { pageNames } from "constant";
 
 const routes: { path: string; element: JSX.Element }[] = [
@@ -10,6 +11,10 @@ const routes: { path: string; element: JSX.Element }[] = [
   {
     path: pageNames.auth,
     element: <Auth />,
+  },
+  {
+    path: pageNames.userDetail,
+    element: <UserDetail />,
   },
 ];
 
