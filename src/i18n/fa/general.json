@@ -10,5 +10,9 @@
   "userDetail": "جزییات کاربر",
   "logOut": "خروج",
   "firstName": "نام",
-  "lastName": "نام فامیل"
+  "lastName": "نام فامیل",
+  "wallet": "کیف پول",
+  "source": "منبع",
+  "wallets": "کیف پول ها",
+  "sources": "منابع"
 }

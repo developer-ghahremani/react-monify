@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "store";
 
 import { BrowserRouter } from "react-router-dom";
 import Pages from "pages";
+import { SideBatMenu } from "components/layout";
 import { setUser } from "store/user";
 import { useWhoAmIMutation } from "store/service";
 
@@ -27,6 +28,7 @@ const Monify = () => {
   return (
     <BrowserRouter>
       <Pages />
+      <SideBatMenu />
     </BrowserRouter>
   );
 };

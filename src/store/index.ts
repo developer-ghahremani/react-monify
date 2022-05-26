@@ -13,6 +13,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { auth } from "./auth";
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
+import modal from "./modal";
 import service from "./service";
 import storage from "redux-persist/lib/storage";
 import userSlice from "./user";
@@ -21,10 +22,15 @@ const reducers = combineReducers({
   [userSlice.name]: userSlice.reducer,
   [service.reducerPath]: service.reducer,
   [auth.name]: auth.reducer,
+  [modal.name]: modal.reducer,
 });
 
 const reducer = persistReducer(
-  { key: "root", blacklist: [service.reducerPath, auth.name], storage },
+  {
+    key: "root",
+    blacklist: [service.reducerPath, auth.name, modal.name],
+    storage,
+  },
   reducers
 );
 

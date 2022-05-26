@@ -10,5 +10,10 @@
   "userDetail": "User detail",
   "logOut": "Log out",
   "firstName": "Firstame",
-  "lastName": "Lastname"
+  "lastName": "Lastname",
+  "wallet": "Wallet",
+  "source": "Source",
+  "wallets": "Wallets",
+  "sources": "Sources",
+  "home": "Home"
 }

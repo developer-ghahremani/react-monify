@@ -34,3 +34,5 @@ i18n
 export default i18n;
 
 export const useI18Next = () => useTranslation();
+export const getCurrentLanguage = (): "fa" | "en" =>
+  i18n.language === "fa" ? "fa" : "en";
