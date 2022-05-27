@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from "react";
+import { TextField } from "@mui/material";
 
 interface Props extends InputHTMLAttributes<{}> {
   label?: string;
@@ -22,7 +23,7 @@ const IInput = ({
         } ${inputClassName}`}
         {...props}
       />
-      <p className="text-xs font-bold text-red-900">{error}</p>
+      {error && <p className="mt-1 text-xs font-bold text-red-900">{error}</p>}
     </div>
   );
 };

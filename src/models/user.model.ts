@@ -1,3 +1,5 @@
+import { WalletInterface } from "./wallet.model";
+
 export interface UserModel {
   firstName?: string;
   lastName?: string;
@@ -5,4 +7,5 @@ export interface UserModel {
   mobile?: string;
   createdAt?: Date;
   token?: string;
+  wallets?: WalletInterface[];
 }

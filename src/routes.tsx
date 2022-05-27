@@ -1,3 +1,4 @@
+import AddWallet from "pages/Wallets/AddWallet";
 import Auth from "pages/Auth";
 import Home from "pages/Home";
 import Sources from "pages/Sources";
@@ -19,8 +20,12 @@ const routes: { path: string; element: JSX.Element }[] = [
     element: <UserDetail />,
   },
   {
-    path: pageNames.wallets,
+    path: pageNames.wallets.list,
     element: <Wallets />,
+  },
+  {
+    path: pageNames.wallets.addWallet,
+    element: <AddWallet />,
   },
   {
     path: pageNames.sources,

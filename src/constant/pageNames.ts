@@ -2,7 +2,7 @@ const pageNames = {
   home: "/",
   auth: "/auth",
   userDetail: "/user-detail",
-  wallets: "/wallets",
+  wallets: { list: "/wallets", addWallet: "/wallets/add" },
   sources: "/sources",
 };
 
