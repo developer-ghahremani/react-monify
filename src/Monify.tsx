@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "store";
 import { BrowserRouter } from "react-router-dom";
 import Pages from "pages";
 import { SideBatMenu } from "components/layout";
+import { setSelectedWallet } from "store/selectedWallet";
 import { setUser } from "store/user";
 import { useWhoAmIMutation } from "store/service";
 
@@ -20,6 +21,8 @@ const Monify = () => {
     try {
       const data = await whoAmI().unwrap();
       dispatch(setUser({ ...data, token: user.token }));
+      if (data.wallets && data.wallets[0])
+        dispatch(setSelectedWallet(data.wallets[0]));
     } catch (error) {
       console.log(error);
     }

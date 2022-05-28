@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { UserModel } from "models/user.model";
 import axiosBaseQuery from "./AxiosBaseQuery";
 import { financialUnitAPI } from "./financialUnits";
+import { sourceAPI } from "./source";
 import { userAPI } from "./user";
 import { walletAPI } from "./wallet";
 
@@ -15,6 +16,7 @@ const service = createApi({
     ...userAPI(builder),
     ...walletAPI(builder),
     ...financialUnitAPI(builder),
+    ...sourceAPI(builder),
   }),
 });
 
@@ -26,5 +28,6 @@ export const {
   useGetWalletsQuery,
   useGetFinancialUnitsQuery,
   usePostWalletMutation,
+  useGetSourcesQuery,
 } = service;
 export default service;

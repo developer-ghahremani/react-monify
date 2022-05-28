@@ -28,7 +28,7 @@ const routes: { path: string; element: JSX.Element }[] = [
     element: <AddWallet />,
   },
   {
-    path: pageNames.sources,
+    path: pageNames.sources.list,
     element: <Sources />,
   },
 ];

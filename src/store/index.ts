@@ -14,6 +14,7 @@ import { auth } from "./auth";
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import modal from "./modal";
+import selectedWallet from "./selectedWallet";
 import service from "./service";
 import storage from "redux-persist/lib/storage";
 import userSlice from "./user";
@@ -23,6 +24,7 @@ const reducers = combineReducers({
   [service.reducerPath]: service.reducer,
   [auth.name]: auth.reducer,
   [modal.name]: modal.reducer,
+  [selectedWallet.name]: selectedWallet.reducer,
 });
 
 const reducer = persistReducer(

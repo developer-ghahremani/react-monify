@@ -22,7 +22,7 @@ const SideBarmenu = () => {
     },
     {
       title: t("general.sources"),
-      to: pageNames.sources,
+      to: pageNames.sources.list,
     },
   ];
 

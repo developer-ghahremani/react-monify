@@ -14,9 +14,9 @@ const Wallets = () => {
   };
 
   return (
-    <MainLayout title={t("general.wallets")}>
-      <p className="mt-4">{t("general.walletsDescription")}</p>
-
+    <MainLayout
+      description={t("general.walletsDescription")}
+      title={t("general.wallets")}>
       <IButton
         varient="primary"
         className="w-auto mt-4"

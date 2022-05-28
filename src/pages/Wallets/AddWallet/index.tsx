@@ -28,7 +28,7 @@ const AddWallet = () => {
     financialUnitId: string;
   }) => {
     try {
-      const data = await createWallet(params);
+      await createWallet(params);
       navigate(pageNames.wallets.list, { replace: true });
     } catch (error) {
       console.log(error);
