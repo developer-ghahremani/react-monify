@@ -12,15 +12,16 @@ export const sourceAPI = (
       {},
       {}
     >,
-    "wallet",
+    "wallet" | "source",
     "service"
   >
 ) => ({
-  getSources: builder.query<[], { walletId: string }>({
+  getSources: builder.query<SourceInterface[], { walletId: string }>({
     query: ({ walletId }) => ({
       method: "Get",
       url: `/source/${walletId}`,
     }),
+    providesTags: ["source"],
   }),
   postSource: builder.mutation<
     SourceInterface,
@@ -29,7 +30,7 @@ export const sourceAPI = (
       type: SourceTypeEnum;
       bankAccountNumber?: string;
       bankCartNumber?: string;
-      initialAmount?: number;
+      initialAmount: number;
       expiredDate?: string;
       code?: string;
       icon?: string;
@@ -38,5 +39,6 @@ export const sourceAPI = (
     }
   >({
     query: (data) => ({ url: "/source", method: "Post", data }),
+    invalidatesTags: ["source", "wallet"],
   }),
 });

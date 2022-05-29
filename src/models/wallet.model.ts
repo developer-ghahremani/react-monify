@@ -5,6 +5,7 @@ export interface WalletInterface {
   name?: string;
   userId?: string;
   financialUnitId?: FinancialUnit;
+  amount?: number;
   color?: string;
   createAt?: Date;
   updatedAt?: Date;

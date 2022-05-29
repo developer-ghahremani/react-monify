@@ -11,7 +11,7 @@ interface ModalInterface {
 const initialState: ModalInterface = {
   sideBarMenu: false,
   sourceModal: {
-    isOpen: true,
+    isOpen: false,
     selectedSource: null,
   },
 };

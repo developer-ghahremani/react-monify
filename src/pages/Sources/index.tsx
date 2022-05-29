@@ -1,6 +1,5 @@
 import { IButton } from "components/general";
 import { MainLayout } from "components/layout";
-import React from "react";
 import SourceList from "components/Sources";
 import { toggleAddSource } from "store/modal";
 import { useAppDispatch } from "store";

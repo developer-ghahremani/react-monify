@@ -11,7 +11,7 @@ const service = createApi({
   baseQuery: axiosBaseQuery(),
   // baseQuery: fetchBaseQuery({ baseUrl: constant.baseUrl }),
   reducerPath: "service",
-  tagTypes: ["wallet"],
+  tagTypes: ["wallet", "source"],
   endpoints: (builder) => ({
     ...userAPI(builder),
     ...walletAPI(builder),

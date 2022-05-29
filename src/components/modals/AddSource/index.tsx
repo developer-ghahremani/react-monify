@@ -3,7 +3,7 @@ import * as yup from "yup";
 import {
   IButton,
   IInput,
-  INumberFormat,
+  INumberFormatInput,
   IRadio,
   ITextArea,
 } from "components/general";
@@ -13,13 +13,15 @@ import { Formik } from "formik";
 import IModal from "components/general/IModal";
 import { SourceTypeEnum } from "constant";
 import { closeAddSource } from "store/modal";
+import { setSelectedWallet } from "store/selectedWallet";
+import { toInteger } from "lodash";
 import { useI18Next } from "i18n";
 import { usePostSourceMutation } from "store/service";
 import { useState } from "react";
 
 const AddSource = () => {
   const { sourceModal } = useAppSelector((s) => s.modal);
-  const { _id: walletId } = useAppSelector((s) => s.selectedWallet);
+  const selectedWallet = useAppSelector((s) => s.selectedWallet);
   const [postSource] = usePostSourceMutation();
 
   const dispatch = useAppDispatch();
@@ -39,20 +41,34 @@ const AddSource = () => {
     dispatch(closeAddSource());
   };
 
-  const handleFinish = async (params: {
+  const handleFinish = async ({
+    initialAmount,
+    ...params
+  }: {
     name: string;
     bankAccountNumber?: string;
     bankCartNumber?: string;
-    initialAmount: 0;
+    initialAmount: string;
     expiredDate?: string;
     code?: string;
     icon?: string;
     note?: string;
   }) => {
-    if (!walletId) return;
+    if (!selectedWallet.amount || !selectedWallet._id) return;
     try {
-      const data = await postSource({ type: sourceType, walletId, ...params });
-      console.log(data);
+      await postSource({
+        type: sourceType,
+        walletId: selectedWallet._id,
+        initialAmount: +initialAmount.replaceAll(",", ""),
+        ...params,
+      });
+      dispatch(
+        setSelectedWallet({
+          ...selectedWallet,
+          amount: selectedWallet.amount + 56,
+        })
+      );
+      handleClose();
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +88,7 @@ const AddSource = () => {
           name: "",
           bankAccountNumber: "",
           bankCartNumber: "",
-          initialAmount: 0,
+          initialAmount: "",
           expiredDate: "",
           code: "",
           icon: "",
@@ -103,7 +119,7 @@ const AddSource = () => {
                 name="name"
                 error={errors.name}
               />
-              <INumberFormat
+              <INumberFormatInput
                 label={t("general.initialAmount")}
                 onChange={handleChange}
                 value={values.initialAmount}
@@ -114,21 +130,21 @@ const AddSource = () => {
 
               {sourceType === SourceTypeEnum.bank && (
                 <>
-                  <INumberFormat
+                  <INumberFormatInput
                     format="#### #### #### #### ####"
                     label={t("general.bankAccountNumber")}
                     onChange={handleChange}
                     name="bankAccountNumber"
                     value={values.bankAccountNumber}
                   />
-                  <INumberFormat
+                  <INumberFormatInput
                     format="#### #### #### #### ####"
                     label={t("general.bankCartNumber")}
                     onChange={handleChange}
                     name="bankCartNumber"
                     value={values.bankCartNumber}
                   />
-                  <INumberFormat
+                  <INumberFormatInput
                     format="####/##"
                     label={t("general.expiredDate")}
                     placeholder="YYYY/MM"
@@ -137,7 +153,7 @@ const AddSource = () => {
                     name="expiredDate"
                     value={values.expiredDate}
                   />
-                  <INumberFormat
+                  <INumberFormatInput
                     format="####"
                     label={t("general.CVV2")}
                     onChange={handleChange}
