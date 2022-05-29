@@ -9,6 +9,14 @@ const api = axios.create({ baseURL: constant.baseUrl });
 
 api.interceptors.request.use((cnf) => {
   const headers: any = cnf.headers || {};
+  const p: any = {};
+  for (const key in cnf.data) {
+    if (typeof cnf.data[key] === "string" && !cnf.data[key]) continue;
+    p[key] = cnf.data[key];
+  }
+
+  cnf.data = p;
+
   if (store.getState().user.token)
     headers.Authorization = store.getState().user.token;
   return cnf;

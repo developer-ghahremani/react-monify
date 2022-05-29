@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        vazir: ["Vazirmatn"],
+        vazir: ["Vazir FD"],
       },
       colors: {
         primary: "#35A894",

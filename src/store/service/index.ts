@@ -29,5 +29,6 @@ export const {
   useGetFinancialUnitsQuery,
   usePostWalletMutation,
   useGetSourcesQuery,
+  usePostSourceMutation,
 } = service;
 export default service;
