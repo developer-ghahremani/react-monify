@@ -32,7 +32,7 @@ const SideBarmenu = () => {
 
   return (
     <IDrawer open={sideBarMenu} onClose={handleClose}>
-      <div className="px-6 py-4">
+      <div className="px-16 py-4">
         {options.map((option) => (
           <Link to={option.to} key={option.title}>
             <p>{option.title}</p>
