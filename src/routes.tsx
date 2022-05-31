@@ -3,6 +3,7 @@ import Auth from "pages/Auth";
 import Category from "pages/Category";
 import Home from "pages/Home";
 import Sources from "pages/Sources";
+import Transaction from "pages/Transaction";
 import UserDetail from "pages/UserDetail";
 import Wallets from "pages/Wallets";
 import { pageNames } from "constant";
@@ -35,6 +36,10 @@ const routes: { path: string; element: JSX.Element }[] = [
   {
     path: pageNames.category.list,
     element: <Category />,
+  },
+  {
+    path: pageNames.transaction.list,
+    element: <Transaction />,
   },
 ];
 

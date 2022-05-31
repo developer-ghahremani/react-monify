@@ -1,5 +1,6 @@
 import { CategoryInrterface } from "./../models/category.model";
 import { SourceInterface } from "./../models/source.model";
+import { TransactionInterface } from "models/transaction.model";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface ModalInterface {
@@ -12,6 +13,10 @@ interface ModalInterface {
     isOpen: boolean;
     selectedCategory: CategoryInrterface | null;
   };
+  transactionModal: {
+    isOpen: boolean;
+    selectedTransaction: TransactionInterface | null;
+  };
 }
 
 const initialState: ModalInterface = {
@@ -23,6 +28,10 @@ const initialState: ModalInterface = {
   categoryModal: {
     isOpen: false,
     selectedCategory: null,
+  },
+  transactionModal: {
+    isOpen: false,
+    selectedTransaction: null,
   },
 };
 
@@ -60,6 +69,15 @@ const modal = createSlice({
         },
       };
     },
+    toggleTransactionModal: (state) => {
+      return {
+        ...state,
+        transactionModal: {
+          ...state.transactionModal,
+          isOpen: !state.transactionModal.isOpen,
+        },
+      };
+    },
   },
 });
 
@@ -68,5 +86,6 @@ export const {
   toggleAddSource,
   closeAddSource,
   toggleCategoryModal,
+  toggleTransactionModal,
 } = modal.actions;
 export default modal;

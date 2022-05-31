@@ -5,11 +5,11 @@ import { useAppDispatch, useAppSelector } from "store";
 import { INumberFormat } from "components/general";
 import { WalletInterface } from "models/wallet.model";
 import { setSelectedWallet } from "store/selectedWallet";
-import { useGetWalletsQuery } from "store/service";
+import { useGetWalletsQuery } from "store/service/wallet";
 
 const SelectWallet = () => {
   const selectedWallet = useAppSelector((s) => s.selectedWallet);
-  const { data: wallets, isFetching } = useGetWalletsQuery();
+  const { data: wallets } = useGetWalletsQuery();
   const [walletMenu, setWalletMenu] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
@@ -23,7 +23,7 @@ const SelectWallet = () => {
 
   return (
     <div
-      className="mx-4 animate__animated  cursor-pointer w-44"
+      className="animate__animated w-44 mx-4 cursor-pointer"
       onClick={handlSelectWallet}>
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
@@ -49,7 +49,7 @@ const SelectWallet = () => {
         )}
       </div>
       {walletMenu && (
-        <div className="animate__animated animate__fadeInDown absolute w-44 bg-lightGray p-2 rounded-lg">
+        <div className="animate__animated animate__fadeInDown animate__faster w-44 bg-lightGray absolute p-2 rounded-lg">
           {wallets?.map((wallet) => (
             <div onClick={() => handleClick(wallet)}>
               <p>{wallet.name}</p>

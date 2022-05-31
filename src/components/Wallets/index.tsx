@@ -3,7 +3,7 @@ import { WalletInterface } from "models/wallet.model";
 import { WalletItem } from "components/items";
 import { setSelectedWallet } from "store/selectedWallet";
 import { useAppDispatch } from "store";
-import { useGetWalletsQuery } from "store/service";
+import { useGetWalletsQuery } from "store/service/wallet";
 
 const Wallets = () => {
   const { isFetching, data } = useGetWalletsQuery();

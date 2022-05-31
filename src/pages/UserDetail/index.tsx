@@ -8,7 +8,7 @@ import { IInput } from "components/general";
 import { MainLayout } from "components/layout";
 import { setUser } from "store/user";
 import { showMessage } from "utils/message";
-import { useEditUserMutation } from "store/service";
+import { useEditUserMutation } from "store/service/user";
 import { useI18Next } from "i18n";
 
 const UserDetail = () => {

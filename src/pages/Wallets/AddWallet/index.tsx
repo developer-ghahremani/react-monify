@@ -1,16 +1,14 @@
 import * as yup from "yup";
 
 import { IButton, IInput, ISelect } from "components/general";
-import {
-  useGetFinancialUnitsQuery,
-  usePostWalletMutation,
-} from "store/service";
+import { usePostWalletMutation } from "store/service/wallet";
 
 import { Formik } from "formik";
 import { MainLayout } from "components/layout";
 import { pageNames } from "constant";
 import { useI18Next } from "i18n";
 import { useNavigate } from "react-router-dom";
+import { useGetFinancialUnitsQuery } from "store/service/financialUnits";
 
 const AddWallet = () => {
   const { t } = useI18Next();

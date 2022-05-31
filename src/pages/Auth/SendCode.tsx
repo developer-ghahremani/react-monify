@@ -10,7 +10,7 @@ import { pageNames } from "constant";
 import { setUser } from "store/user";
 import { showMessage } from "utils/message";
 import { useI18Next } from "i18n";
-import { useLoginMutation } from "store/service";
+import { useLoginMutation } from "store/service/user";
 import { useNavigate } from "react-router-dom";
 
 const SendCode = () => {

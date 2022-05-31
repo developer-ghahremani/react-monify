@@ -1,44 +1,35 @@
-import { BaseQueryFn } from "@reduxjs/toolkit/dist/query";
-import { EndpointBuilder } from "@reduxjs/toolkit/dist/query/endpointDefinitions";
 import { SourceInterface } from "models/source.model";
 import { SourceTypeEnum } from "constant";
+import service from "./";
 
-export const sourceAPI = (
-  builder: EndpointBuilder<
-    BaseQueryFn<
-      { url: string; method: string | undefined; data?: any; params?: any },
-      unknown,
-      unknown,
-      {},
-      {}
-    >,
-    "wallet" | "source" | "category",
-    "service"
-  >
-) => ({
-  getSources: builder.query<SourceInterface[], { walletId: string }>({
-    query: ({ walletId }) => ({
-      method: "Get",
-      url: `/source/${walletId}`,
+const sourceAPI = service.injectEndpoints({
+  endpoints: (builder) => ({
+    getSources: builder.query<SourceInterface[], { walletId: string }>({
+      query: ({ walletId }) => ({
+        method: "Get",
+        url: `/source/${walletId}`,
+      }),
+      providesTags: ["source"],
     }),
-    providesTags: ["source"],
-  }),
-  postSource: builder.mutation<
-    SourceInterface,
-    {
-      name: string;
-      type: SourceTypeEnum;
-      bankAccountNumber?: string;
-      bankCartNumber?: string;
-      initialAmount: number;
-      expiredDate?: string;
-      code?: string;
-      icon?: string;
-      note?: string;
-      walletId: string;
-    }
-  >({
-    query: (data) => ({ url: "/source", method: "Post", data }),
-    invalidatesTags: ["source", "wallet"],
+    postSource: builder.mutation<
+      SourceInterface,
+      {
+        name: string;
+        type: SourceTypeEnum;
+        bankAccountNumber?: string;
+        bankCartNumber?: string;
+        initialAmount: number;
+        expiredDate?: string;
+        code?: string;
+        icon?: string;
+        note?: string;
+        walletId: string;
+      }
+    >({
+      query: (data) => ({ url: "/source", method: "Post", data }),
+      invalidatesTags: ["source", "wallet"],
+    }),
   }),
 });
+
+export const { useGetSourcesQuery, usePostSourceMutation } = sourceAPI;

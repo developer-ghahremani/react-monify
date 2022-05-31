@@ -5,15 +5,22 @@ import React from "react";
 interface Props extends NumberFormatProps {
   label: string;
   error?: string;
+  inputClassName?: string;
 }
 
-const INumberFormat = ({ className, label, error, ...props }: Props) => {
+const INumberFormat = ({
+  className,
+  label,
+  error,
+  inputClassName,
+  ...props
+}: Props) => {
   return (
     <div className={className}>
       <p>{label}</p>
       <NumberFormat
         displayType="input"
-        className={`app-input !font-vazir h-auto !py-2 ${className}`}
+        className={`app-input !font-vazir h-auto !py-2 ${inputClassName}`}
         style={{ direction: "ltr" }}
         {...props}
       />

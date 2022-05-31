@@ -1,5 +1,8 @@
 import { DraggableContainer, ILoading } from "components/general";
-import { useGetCategoriesQuery, usePatchCategoryMutation } from "store/service";
+import {
+  useGetCategoriesQuery,
+  usePatchCategoryMutation,
+} from "store/service/category";
 
 import { CategoryItem } from "components/items";
 import { DropResult } from "react-beautiful-dnd";

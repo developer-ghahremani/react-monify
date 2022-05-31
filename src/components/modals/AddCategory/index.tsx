@@ -1,6 +1,9 @@
 import { IButton, IInput, ILoading, IRadio, ISelect } from "components/general";
 import { useAppDispatch, useAppSelector } from "store";
-import { useGetCategoriesQuery, usePostCategoryMutation } from "store/service";
+import {
+  useGetCategoriesQuery,
+  usePostCategoryMutation,
+} from "store/service/category";
 
 import { Formik } from "formik";
 import IModal from "components/general/IModal";
@@ -35,7 +38,7 @@ const AddCategory = () => {
         order: 1,
         type: categoryType,
         parentId: params.parentId,
-      });
+      }).unwrap();
       dispatch(toggleCategoryModal());
     } catch (error) {
       console.log(error);

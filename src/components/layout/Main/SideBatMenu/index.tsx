@@ -28,6 +28,10 @@ const SideBarmenu = () => {
       title: t("general.categories"),
       to: pageNames.category.list,
     },
+    {
+      title: t("general.transactions"),
+      to: pageNames.transaction.list,
+    },
   ];
 
   const handleClose = () => {

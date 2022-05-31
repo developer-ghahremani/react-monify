@@ -14,9 +14,9 @@ import IModal from "components/general/IModal";
 import { SourceTypeEnum } from "constant";
 import { closeAddSource } from "store/modal";
 import { setSelectedWallet } from "store/selectedWallet";
-import { toInteger } from "lodash";
+
 import { useI18Next } from "i18n";
-import { usePostSourceMutation } from "store/service";
+import { usePostSourceMutation } from "store/service/source";
 import { useState } from "react";
 
 const AddSource = () => {
@@ -61,7 +61,7 @@ const AddSource = () => {
         walletId: selectedWallet._id,
         initialAmount: +initialAmount.replaceAll(",", ""),
         ...params,
-      });
+      }).unwrap();
       dispatch(
         setSelectedWallet({
           ...selectedWallet,

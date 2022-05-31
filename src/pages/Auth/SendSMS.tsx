@@ -5,7 +5,7 @@ import { authChangeStep } from "store/auth";
 import { showMessage } from "utils/message";
 import { useAppDispatch } from "store";
 import { useI18Next } from "i18n";
-import { useSendSMSMutation } from "store/service";
+import { useSendSMSMutation } from "store/service/user";
 
 const SendSMS = () => {
   const { t } = useI18Next();

@@ -1,13 +1,12 @@
 import { HomeIcon, MenuIcon } from "components/icons";
-import { useAppDispatch, useAppSelector } from "store";
+import { useAppDispatch } from "store";
 
-import { INumberFormat } from "components/general";
-import { Link } from "react-router-dom";
 import React from "react";
 import SelectWallet from "./SelectWallet";
 import UserMenu from "./UserMenu";
 import { pageNames } from "constant";
 import { toggleSidebarMenu } from "store/modal";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();

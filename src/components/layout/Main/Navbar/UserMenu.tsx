@@ -44,7 +44,7 @@ const UserMenu = () => {
       />
       {showMenu && (
         <div
-          className={`absolute w-44 animate__animated animate__fadeInDown bg-lightGray rounded-xl animate__faster py-3 items-center flex flex-col`}>
+          className={`absolute w-44 bg-lightGray rounded-xl py-3 items-center flex flex-col animate__animated animate__fadeInDown animate__faster`}>
           <p>{user.firstName + " " + user.lastName}</p>
           <p>{user.mobile}</p>
 

@@ -6,7 +6,7 @@ import Pages from "pages";
 import { SideBatMenu } from "components/layout";
 import { setSelectedWallet } from "store/selectedWallet";
 import { setUser } from "store/user";
-import { useWhoAmIMutation } from "store/service";
+import { useWhoAmIMutation } from "store/service/user";
 
 const Monify = () => {
   const user = useAppSelector((s) => s.user);

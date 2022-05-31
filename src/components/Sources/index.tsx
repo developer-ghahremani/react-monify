@@ -2,7 +2,7 @@ import ILoading from "components/general/ILoading";
 import React from "react";
 import { SourceItem } from "components/items";
 import { useAppSelector } from "store";
-import { useGetSourcesQuery } from "store/service";
+import { useGetSourcesQuery } from "store/service/source";
 
 type Props = {};
 

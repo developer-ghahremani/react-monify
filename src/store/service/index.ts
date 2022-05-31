@@ -1,39 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-import { UserModel } from "models/user.model";
 import axiosBaseQuery from "./AxiosBaseQuery";
-import { categoryAPI } from "./category";
-import { financialUnitAPI } from "./financialUnits";
-import { sourceAPI } from "./source";
-import { userAPI } from "./user";
-import { walletAPI } from "./wallet";
+import { createApi } from "@reduxjs/toolkit/query/react";
 
 const service = createApi({
   baseQuery: axiosBaseQuery(),
   // baseQuery: fetchBaseQuery({ baseUrl: constant.baseUrl }),
   reducerPath: "service",
-  tagTypes: ["wallet", "source", "category"],
-  endpoints: (builder) => ({
-    ...userAPI(builder),
-    ...walletAPI(builder),
-    ...financialUnitAPI(builder),
-    ...sourceAPI(builder),
-    ...categoryAPI(builder),
-  }),
+  tagTypes: ["wallet", "source", "category", "transaction"],
+  endpoints: () => ({}),
 });
 
-export const {
-  useSendSMSMutation,
-  useLoginMutation,
-  useWhoAmIMutation,
-  useEditUserMutation,
-  useGetWalletsQuery,
-  useGetFinancialUnitsQuery,
-  usePostWalletMutation,
-  useGetSourcesQuery,
-  usePostSourceMutation,
-  useGetCategoriesQuery,
-  usePostCategoryMutation,
-  usePatchCategoryMutation,
-} = service;
 export default service;

@@ -3,7 +3,7 @@ import { DraggableContainer } from "components/general";
 import { DropResult } from "react-beautiful-dnd";
 import IDragablaItem from "components/general/IDraggable/IDraggableItem";
 import React from "react";
-import { usePatchCategoryMutation } from "store/service";
+import { usePatchCategoryMutation } from "store/service/category";
 
 type Props = { categories: CategoryInrterface[] };
 
@@ -28,7 +28,7 @@ const SubCategories = (props: Props) => {
         .map((item, index, array) => (
           <IDragablaItem id={item._id} index={index}>
             <div className="flex w-full">
-              <div className="w-14 h-auto relative">
+              <div className="w-14 relative h-auto">
                 <div className="absolute w-7 h-[2px] bg-lightGray top-[50%] right-[30%]"></div>
                 <div className="absolute w-[2px] h-[50%] bg-lightGray  bottom-[50%] right-[30%]"></div>
                 {index !== array.length - 1 && (
