@@ -11,7 +11,7 @@ export const userAPI = (
       {},
       {}
     >,
-    "wallet" | "source",
+    "wallet" | "source" | "category" | "category",
     "service"
   >
 ) => ({

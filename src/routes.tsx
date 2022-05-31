@@ -1,5 +1,6 @@
 import AddWallet from "pages/Wallets/AddWallet";
 import Auth from "pages/Auth";
+import Category from "pages/Category";
 import Home from "pages/Home";
 import Sources from "pages/Sources";
 import UserDetail from "pages/UserDetail";
@@ -30,6 +31,10 @@ const routes: { path: string; element: JSX.Element }[] = [
   {
     path: pageNames.sources.list,
     element: <Sources />,
+  },
+  {
+    path: pageNames.category.list,
+    element: <Category />,
   },
 ];
 

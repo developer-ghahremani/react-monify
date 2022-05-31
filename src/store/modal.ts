@@ -1,10 +1,16 @@
+import { CategoryInrterface } from "./../models/category.model";
+import { SourceInterface } from "./../models/source.model";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface ModalInterface {
   sideBarMenu: boolean;
   sourceModal: {
     isOpen: boolean;
-    selectedSource: any | null;
+    selectedSource: SourceInterface | null;
+  };
+  categoryModal: {
+    isOpen: boolean;
+    selectedCategory: CategoryInrterface | null;
   };
 }
 
@@ -13,6 +19,10 @@ const initialState: ModalInterface = {
   sourceModal: {
     isOpen: false,
     selectedSource: null,
+  },
+  categoryModal: {
+    isOpen: false,
+    selectedCategory: null,
   },
 };
 
@@ -41,9 +51,22 @@ const modal = createSlice({
         },
       };
     },
+    toggleCategoryModal: (state) => {
+      return {
+        ...state,
+        categoryModal: {
+          ...state.categoryModal,
+          isOpen: !state.categoryModal.isOpen,
+        },
+      };
+    },
   },
 });
 
-export const { toggleSidebarMenu, toggleAddSource, closeAddSource } =
-  modal.actions;
+export const {
+  toggleSidebarMenu,
+  toggleAddSource,
+  closeAddSource,
+  toggleCategoryModal,
+} = modal.actions;
 export default modal;

@@ -12,7 +12,7 @@ export const sourceAPI = (
       {},
       {}
     >,
-    "wallet" | "source",
+    "wallet" | "source" | "category",
     "service"
   >
 ) => ({

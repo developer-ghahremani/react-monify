@@ -26,5 +26,12 @@
   "bank": "بانک",
   "sourceName": "نام منبع خرج",
   "bankAccountNumber": "شماره حساب بانکی",
-  "initialAmount": "مقدار اولیه"
+  "initialAmount": "مقدار اولیه",
+  "home": "خانه",
+  "categories": "دسته بندی ها",
+  "addCategory": "افزودن دسته بندی",
+  "categoryType": "نوع دسته بندی",
+  "income": "درآمد",
+  "cost": "هزینه",
+  "color": "رنگ"
 }

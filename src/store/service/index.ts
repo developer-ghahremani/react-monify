@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { UserModel } from "models/user.model";
 import axiosBaseQuery from "./AxiosBaseQuery";
+import { categoryAPI } from "./category";
 import { financialUnitAPI } from "./financialUnits";
 import { sourceAPI } from "./source";
 import { userAPI } from "./user";
@@ -11,12 +12,13 @@ const service = createApi({
   baseQuery: axiosBaseQuery(),
   // baseQuery: fetchBaseQuery({ baseUrl: constant.baseUrl }),
   reducerPath: "service",
-  tagTypes: ["wallet", "source"],
+  tagTypes: ["wallet", "source", "category"],
   endpoints: (builder) => ({
     ...userAPI(builder),
     ...walletAPI(builder),
     ...financialUnitAPI(builder),
     ...sourceAPI(builder),
+    ...categoryAPI(builder),
   }),
 });
 
@@ -30,5 +32,7 @@ export const {
   usePostWalletMutation,
   useGetSourcesQuery,
   usePostSourceMutation,
+  useGetCategoriesQuery,
+  usePostCategoryMutation,
 } = service;
 export default service;

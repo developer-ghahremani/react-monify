@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 import { BaseQueryFn } from "@reduxjs/toolkit/dist/query";
 import constant from "constant";
@@ -22,24 +22,30 @@ api.interceptors.request.use((cnf) => {
   return cnf;
 });
 
-api.interceptors.response.use(undefined, (error) => {
-  if (
-    error &&
-    error.response &&
-    error.response.data &&
-    error.response.data.message
-  ) {
-    if (typeof error.response.data.message === "string")
-      showMessage(error.response.data.message, { type: "error" });
+api.interceptors.response.use(
+  (res: AxiosResponse) => {
+    if (res.status === 201) showMessage("created", { type: "success" });
+    return Promise.resolve(res);
+  },
+  (error) => {
+    if (
+      error &&
+      error.response &&
+      error.response.data &&
+      error.response.data.message
+    ) {
+      if (typeof error.response.data.message === "string")
+        showMessage(error.response.data.message, { type: "error" });
 
-    if (Array.isArray(error.response.data.message))
-      error.response.data.message.forEach((message: string) => {
-        showMessage(message, { type: "error" });
-      });
+      if (Array.isArray(error.response.data.message))
+        error.response.data.message.forEach((message: string) => {
+          showMessage(message, { type: "error" });
+        });
+    }
+
+    return Promise.reject(error);
   }
-
-  return Promise.reject(error);
-});
+);
 
 const axiosBaseQuery = (): BaseQueryFn<
   {

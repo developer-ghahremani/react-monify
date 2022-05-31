@@ -30,7 +30,12 @@ const reducers = combineReducers({
 const reducer = persistReducer(
   {
     key: "root",
-    blacklist: [service.reducerPath, auth.name, modal.name],
+    blacklist: [
+      service.reducerPath,
+      auth.name,
+      modal.name,
+      selectedWallet.name,
+    ],
     storage,
   },
   reducers

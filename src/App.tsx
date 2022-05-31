@@ -1,5 +1,6 @@
 import store, { persistor } from "store";
 
+import AddCategory from "components/modals/AddCategory";
 import { AddSource } from "components/modals";
 import Monify from "Monify";
 import { PersistGate } from "redux-persist/integration/react";
@@ -14,6 +15,7 @@ const App = () => {
         <Monify />
         {/* <SideBatMenu /> */}
         <AddSource />
+        <AddCategory />
         <ToastContainer position="bottom-right" />
       </PersistGate>
     </Provider>

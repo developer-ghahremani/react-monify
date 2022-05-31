@@ -7,3 +7,6 @@ export { default as IRadio } from "./IRadio";
 export { default as INumberFormatInput } from "./INumberFormatInput";
 export { default as INumberFormat } from "./INumberFormat";
 export { default as ITextArea } from "./ITextArea";
+export { default as ILoading } from "./ILoading";
+export { default as DraggableContainer } from "./IDraggable/DraggableContainer";
+export { default as IDraggableItem } from "./IDraggable/IDraggableItem";

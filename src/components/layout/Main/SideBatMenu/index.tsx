@@ -24,6 +24,10 @@ const SideBarmenu = () => {
       title: t("general.sources"),
       to: pageNames.sources.list,
     },
+    {
+      title: t("general.categories"),
+      to: pageNames.category.list,
+    },
   ];
 
   const handleClose = () => {

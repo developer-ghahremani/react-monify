@@ -11,7 +11,7 @@ export const financialUnitAPI = (
       {},
       {}
     >,
-    "wallet" | "source",
+    "wallet" | "source" | "category",
     "service"
   >
 ) => ({
