@@ -34,5 +34,6 @@ export const {
   usePostSourceMutation,
   useGetCategoriesQuery,
   usePostCategoryMutation,
+  usePatchCategoryMutation,
 } = service;
 export default service;

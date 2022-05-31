@@ -34,4 +34,21 @@ export const categoryAPI = (
     query: (data) => ({ method: "Post", url: "/category", data }),
     invalidatesTags: ["category"],
   }),
+  patchCategory: builder.mutation<
+    CategoryInrterface,
+    {
+      name?: string;
+      categoryId: string;
+      order?: number;
+      color?: string;
+      icon?: string;
+    }
+  >({
+    query: ({ categoryId, ...data }) => ({
+      url: `/category/${categoryId}`,
+      method: "Patch",
+      data,
+    }),
+    invalidatesTags: ["category"],
+  }),
 });

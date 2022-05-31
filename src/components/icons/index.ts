@@ -7,3 +7,4 @@ export { default as DeleteIcon } from "./Delete";
 export { default as DownIcon } from "./Down";
 export { default as UpIcon } from "./Up";
 export { default as DragIcon } from "./Drag";
+export { default as MoreIcon } from "./More";

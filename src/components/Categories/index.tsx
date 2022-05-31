@@ -1,22 +1,33 @@
 import { DraggableContainer, ILoading } from "components/general";
+import { useGetCategoriesQuery, usePatchCategoryMutation } from "store/service";
 
 import { CategoryItem } from "components/items";
 import { DropResult } from "react-beautiful-dnd";
 import { useAppSelector } from "store";
-import { useGetCategoriesQuery } from "store/service";
 import { useI18Next } from "i18n";
 
 const Categories = () => {
   const selectedWallet = useAppSelector((s) => s.selectedWallet);
   const { t } = useI18Next();
-  const { data, isFetching, isUninitialized } = useGetCategoriesQuery(
+  const [updateCategory] = usePatchCategoryMutation();
+  const { data, isFetching } = useGetCategoriesQuery(
     {
       walletId: selectedWallet._id || "",
     },
     { skip: !selectedWallet._id }
   );
 
-  const handleEndDrag = (result: DropResult) => {};
+  const handleEndDrag = async (result: DropResult) => {
+    if (!result.destination) return;
+    try {
+      await updateCategory({
+        categoryId: result.draggableId,
+        order: result.destination.index,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (isFetching || !data) return <ILoading />;
   return (
@@ -25,7 +36,7 @@ const Categories = () => {
         <p className="text-center">{t("general.income")}</p>
         <div className="h-[1px] bg-green-800"></div>
         <DraggableContainer onEndDrag={handleEndDrag}>
-          {data
+          {[...data]
             .filter((item) => item.type === 1)
             .sort((a, b) => a.order - b.order)
             .map((item, index) => (
@@ -37,7 +48,7 @@ const Categories = () => {
         <p className="text-center">{t("general.cost")}</p>
         <div className="h-[1px] bg-red-800"></div>
         <DraggableContainer onEndDrag={handleEndDrag}>
-          {data
+          {[...data]
             .filter((item) => item.type === -1)
             .sort((a, b) => a.order - b.order)
             .map((item, index) => (

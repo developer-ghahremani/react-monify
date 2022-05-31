@@ -1,11 +1,12 @@
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable, DraggableProps } from "react-beautiful-dnd";
+
 import React from "react";
 
-type Props = {
+interface Props {
   id: string;
   index: number;
   children: React.ReactNode;
-};
+}
 
 const IDragablaItem = (props: Props) => {
   return (
