@@ -6,6 +6,7 @@ interface Props extends NumberFormatProps {
   label: string;
   error?: string;
   inputClassName?: string;
+  touched?: boolean;
 }
 
 const INumberFormat = ({
@@ -13,6 +14,7 @@ const INumberFormat = ({
   label,
   error,
   inputClassName,
+  touched,
   ...props
 }: Props) => {
   return (
@@ -24,7 +26,9 @@ const INumberFormat = ({
         style={{ direction: "ltr" }}
         {...props}
       />
-      {error && <p className="mt-1 text-xs font-bold text-red-900">{error}</p>}
+      {touched && error && (
+        <p className="mt-1 text-xs font-bold text-red-900">{error}</p>
+      )}
     </div>
   );
 };

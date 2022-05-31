@@ -102,7 +102,7 @@ const AddTransaction = () => {
         validationSchema={validatoinSchema}
         initialValues={{ amount: "0", categoryId: "", sourceId: "" }}
         onSubmit={handleAddTrs}>
-        {({ handleChange, handleSubmit, values, errors }) => (
+        {({ handleChange, handleSubmit, values, errors, touched }) => (
           <form onSubmit={handleSubmit}>
             <div className="md:grid-cols-3 grid grid-cols-1 gap-4 mt-4">
               <INumberFormatInput
@@ -119,6 +119,7 @@ const AddTransaction = () => {
                 <ILoading />
               ) : (
                 <ISelect
+                  touched={touched.sourceId}
                   label={t("general.source")}
                   name="sourceId"
                   value={values.sourceId}
@@ -136,6 +137,7 @@ const AddTransaction = () => {
                 <ISelect
                   label={t("general.categoryType")}
                   name="categoryId"
+                  touched={touched.categoryId}
                   value={values.categoryId}
                   error={errors.categoryId}
                   onChange={handleChange}

@@ -6,6 +6,7 @@ interface Props extends SelectHTMLAttributes<{}> {
   label?: string;
   selectClassName?: string;
   error?: string;
+  touched?: boolean;
 }
 
 const ISelect = ({
@@ -13,6 +14,7 @@ const ISelect = ({
   selectClassName,
   className,
   error,
+  touched,
   ...props
 }: Props) => (
   <div className={className}>
@@ -27,7 +29,9 @@ const ISelect = ({
         <option {...item}>{children}</option>
       ))}
     </select>
-    {error && <p className="mt-1 text-xs font-bold text-red-900">{error}</p>}
+    {touched && error && (
+      <p className="mt-1 text-xs font-bold text-red-900">{error}</p>
+    )}
   </div>
 );
 
