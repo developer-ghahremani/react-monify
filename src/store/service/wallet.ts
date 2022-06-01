@@ -16,6 +16,26 @@ export const walletAPI = service.injectEndpoints({
       query: (data) => ({ url: "/wallet", method: "Post", data }),
       invalidatesTags: ["wallet"],
     }),
+    getWallet: builder.query<WalletInterface, { walletId: string }>({
+      query: ({ walletId }) => ({ url: `/wallet/${walletId}`, method: "Get" }),
+      providesTags: ["wallet"],
+    }),
+    patchWallet: builder.mutation<
+      WalletInterface,
+      {
+        walletId: string;
+        name: string;
+        color?: string;
+        financialUnitId: string;
+      }
+    >({
+      query: ({ walletId, ...data }) => ({
+        url: `/wallet/${walletId}`,
+        method: "Patch",
+        data,
+      }),
+      invalidatesTags: ["wallet"],
+    }),
   }),
 });
 
@@ -25,7 +45,8 @@ export const walletMiddleware: Middleware =
   (action) => {
     if (
       action.type === "service/executeQuery/fulfilled" &&
-      action.meta.arg.endpointName === "getWallets"
+      (action.meta.arg.endpointName === "getWallets" ||
+        action.meta.arg.endpointName === "patchWallet")
     )
       dispatch(
         setSelectedWallet({
@@ -40,4 +61,9 @@ export const walletMiddleware: Middleware =
     return next(action);
   };
 
-export const { useGetWalletsQuery, usePostWalletMutation } = walletAPI;
+export const {
+  useGetWalletsQuery,
+  usePostWalletMutation,
+  useGetWalletQuery,
+  usePatchWalletMutation,
+} = walletAPI;

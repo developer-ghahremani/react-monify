@@ -2,7 +2,10 @@ import { DeleteIcon, EditIcon } from "components/icons";
 
 import { INumberFormat } from "components/general";
 import { WalletInterface } from "models/wallet.model";
+import { pageNames } from "constant";
+import { stringifyUrl } from "query-string";
 import { useAppSelector } from "store";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   wallet: WalletInterface;
@@ -11,9 +14,19 @@ type Props = {
 
 const WalletItem = (props: Props) => {
   const selectedWallet = useAppSelector((s) => s.selectedWallet);
+  const navigate = useNavigate();
 
   const hadnleClick = () => {
     props.onClick(props.wallet);
+  };
+
+  const handleEditWallet = () => {
+    navigate(
+      stringifyUrl({
+        url: pageNames.wallets.addWallet,
+        query: { walletId: props.wallet._id },
+      })
+    );
   };
 
   return (
@@ -32,7 +45,10 @@ const WalletItem = (props: Props) => {
           <INumberFormat value={props.wallet.amount} thousandSeparator />
         </div>
         <div className="flex flex-col">
-          <EditIcon className="cursor-pointer" />
+          <EditIcon
+            className="hover:scale-105 cursor-pointer"
+            onClick={handleEditWallet}
+          />
           <DeleteIcon className="cursor-pointer" />
         </div>
       </div>
