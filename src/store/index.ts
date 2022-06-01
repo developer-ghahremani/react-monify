@@ -35,7 +35,7 @@ const reducer = persistReducer(
       service.reducerPath,
       auth.name,
       modal.name,
-      selectedWallet.name,
+      // selectedWallet.name,
     ],
     storage,
   },
