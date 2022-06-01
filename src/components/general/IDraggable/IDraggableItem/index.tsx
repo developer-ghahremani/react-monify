@@ -1,5 +1,4 @@
-import { Draggable, DraggableProps } from "react-beautiful-dnd";
-
+import { Draggable } from "react-beautiful-dnd";
 import React from "react";
 
 interface Props {

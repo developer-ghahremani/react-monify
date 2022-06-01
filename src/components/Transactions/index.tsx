@@ -1,6 +1,4 @@
-import { CategorizedTransaction, TransactionItem } from "components/items";
-
-import { INumberFormat } from "components/general";
+import { CategorizedTransaction } from "components/items";
 import { groupBy } from "lodash";
 import jMoment from "moment-jalaali";
 import moment from "moment";

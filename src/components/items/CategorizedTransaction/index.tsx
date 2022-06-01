@@ -1,9 +1,9 @@
 import { DownIcon, UpIcon } from "components/icons";
-import React, { useState } from "react";
 
 import { INumberFormat } from "components/general";
 import { TransactionInterface } from "models/transaction.model";
 import TransactionItem from "../Transaction";
+import { useState } from "react";
 
 type Props = {
   label: string;
@@ -20,7 +20,7 @@ const CategorizedTransaction = (props: Props) => {
   return (
     <>
       <div
-        className="flex justify-between items-center bg-lightGray px-4 py-1 rounded-lg text-lg hover:scale-105 cursor-pointer my-2 duration-300"
+        className="bg-lightGray hover:scale-105 flex items-center justify-between px-4 py-1 my-2 text-lg duration-300 rounded-lg cursor-pointer"
         onClick={toggleexpand}>
         <p>{props.label}</p>
         <div className="flex items-center">

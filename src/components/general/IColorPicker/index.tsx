@@ -5,8 +5,6 @@ type Props = {
 };
 
 const IColorPicker = (props: Props) => {
-  const handlChange = (params: any) => {};
-
   return (
     <div>
       <input type="text" name="" id="" />

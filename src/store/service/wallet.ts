@@ -1,5 +1,4 @@
-import { Middleware, isRejectedWithValue } from "@reduxjs/toolkit";
-
+import { Middleware } from "@reduxjs/toolkit";
 import { WalletInterface } from "models/wallet.model";
 import service from "./";
 import { setSelectedWallet } from "store/selectedWallet";

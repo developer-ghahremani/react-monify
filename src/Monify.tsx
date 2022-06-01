@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "store";
 
 import { BrowserRouter } from "react-router-dom";
@@ -6,6 +5,7 @@ import Pages from "pages";
 import { SideBatMenu } from "components/layout";
 import { setSelectedWallet } from "store/selectedWallet";
 import { setUser } from "store/user";
+import { useEffect } from "react";
 import { useWhoAmIMutation } from "store/service/user";
 
 const Monify = () => {
