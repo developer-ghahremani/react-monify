@@ -36,5 +36,8 @@
   "color": "رنگ",
   "transactions": "تراکنش ها",
   "addTransaction": "افزودن تراکنش",
-  "amount": "مقدار"
+  "amount": "مقدار",
+  "category": "دسته بندی",
+  "transactionType": "نوع تراکنش",
+  "messages": "پیام ها"
 }

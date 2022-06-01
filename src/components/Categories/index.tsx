@@ -36,11 +36,11 @@ const Categories = () => {
   return (
     <div className="md:grid-cols-2 grid grid-cols-1 gap-4 mt-4">
       <div className="flex flex-col">
-        <p className="text-center">{t("general.income")}</p>
-        <div className="h-[1px] bg-green-800"></div>
+        <p className="text-center">{t("general.cost")}</p>
+        <div className="h-[1px] bg-red-800"></div>
         <DraggableContainer onEndDrag={handleEndDrag}>
           {[...data]
-            .filter((item) => item.type === 1)
+            .filter((item) => item.type === -1)
             .sort((a, b) => a.order - b.order)
             .map((item, index) => (
               <CategoryItem index={index} category={item} key={item._id} />
@@ -48,11 +48,11 @@ const Categories = () => {
         </DraggableContainer>
       </div>
       <div className="flex flex-col">
-        <p className="text-center">{t("general.cost")}</p>
-        <div className="h-[1px] bg-red-800"></div>
+        <p className="text-center">{t("general.income")}</p>
+        <div className="h-[1px] bg-green-800"></div>
         <DraggableContainer onEndDrag={handleEndDrag}>
           {[...data]
-            .filter((item) => item.type === -1)
+            .filter((item) => item.type === 1)
             .sort((a, b) => a.order - b.order)
             .map((item, index) => (
               <CategoryItem index={index} category={item} key={item._id} />

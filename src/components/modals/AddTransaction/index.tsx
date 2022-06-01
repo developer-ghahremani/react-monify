@@ -1,9 +1,5 @@
-import { useAppDispatch, useAppSelector } from "store";
+import * as yup from "yup";
 
-import IModal from "components/general/IModal";
-import React, { useState } from "react";
-import { toggleTransactionModal } from "store/modal";
-import { useI18Next } from "i18n";
 import {
   IButton,
   ILoading,
@@ -11,11 +7,16 @@ import {
   IRadio,
   ISelect,
 } from "components/general";
+import React, { useState } from "react";
+import { toggleAddSource, toggleTransactionModal } from "store/modal";
+import { useAppDispatch, useAppSelector } from "store";
+
 import { Formik } from "formik";
-import { useGetSourcesQuery } from "store/service/source";
-import * as yup from "yup";
-import { usePostTransactionMutation } from "store/service/transaction";
+import IModal from "components/general/IModal";
 import { useGetCategoriesQuery } from "store/service/category";
+import { useGetSourcesQuery } from "store/service/source";
+import { useI18Next } from "i18n";
+import { usePostTransactionMutation } from "store/service/transaction";
 
 const AddTransaction = () => {
   const selectedWallet = useAppSelector((s) => s.selectedWallet);
@@ -78,6 +79,10 @@ const AddTransaction = () => {
     }
   };
 
+  const handleAddSource = () => {
+    dispatch(toggleAddSource());
+  };
+
   return (
     <IModal
       isOpen={transactionModal.isOpen}
@@ -125,6 +130,14 @@ const AddTransaction = () => {
                   value={values.sourceId}
                   onChange={handleChange}
                   error={errors.sourceId}
+                  extra={
+                    <IButton
+                      onClick={handleAddSource}
+                      className="w-auto text-xs text-white"
+                      varient="primary">
+                      {t("general.addSource")}
+                    </IButton>
+                  }
                   options={[{ _id: "", name: "" }, ...sources].map((item) => ({
                     value: item._id,
                     label: item.name,

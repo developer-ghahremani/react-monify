@@ -18,6 +18,7 @@ import selectedWallet from "./selectedWallet";
 import service from "./service";
 import storage from "redux-persist/lib/storage";
 import userSlice from "./user";
+import { walletMiddleware } from "./service/wallet";
 
 const reducers = combineReducers({
   [userSlice.name]: userSlice.reducer,
@@ -48,7 +49,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(service.middleware),
+    }).concat([service.middleware, walletMiddleware]),
 });
 
 export const persistor = persistStore(store);

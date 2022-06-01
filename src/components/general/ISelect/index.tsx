@@ -1,4 +1,3 @@
-import { MenuItem, MenuItemProps, Select, SelectProps } from "@mui/material";
 import React, { OptionHTMLAttributes, SelectHTMLAttributes } from "react";
 
 interface Props extends SelectHTMLAttributes<{}> {
@@ -7,6 +6,7 @@ interface Props extends SelectHTMLAttributes<{}> {
   selectClassName?: string;
   error?: string;
   touched?: boolean;
+  extra?: string | JSX.Element;
 }
 
 const ISelect = ({
@@ -15,10 +15,14 @@ const ISelect = ({
   className,
   error,
   touched,
+  extra,
   ...props
 }: Props) => (
   <div className={className}>
-    <p>{props.label}</p>
+    <div className="flex justify-between items-center">
+      <p>{props.label}</p>
+      {typeof extra === "string" ? <p>{extra}</p> : extra}
+    </div>
 
     <select
       className={`app-select ${

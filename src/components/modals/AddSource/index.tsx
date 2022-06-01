@@ -14,7 +14,6 @@ import IModal from "components/general/IModal";
 import { SourceTypeEnum } from "constant";
 import { closeAddSource } from "store/modal";
 import { setSelectedWallet } from "store/selectedWallet";
-
 import { useI18Next } from "i18n";
 import { usePostSourceMutation } from "store/service/source";
 import { useState } from "react";
@@ -54,7 +53,7 @@ const AddSource = () => {
     icon?: string;
     note?: string;
   }) => {
-    if (!selectedWallet.amount || !selectedWallet._id) return;
+    if (!selectedWallet._id) return;
     try {
       await postSource({
         type: sourceType,
@@ -65,7 +64,7 @@ const AddSource = () => {
       dispatch(
         setSelectedWallet({
           ...selectedWallet,
-          amount: selectedWallet.amount + 56,
+          amount: selectedWallet.amount || 0 + 56,
         })
       );
       handleClose();
@@ -81,6 +80,21 @@ const AddSource = () => {
   return (
     <IModal isOpen={sourceModal.isOpen} onRequestClose={handleClose}>
       <p className="text-2xl font-bold">{t("general.addSource")}</p>
+      <div className="flex flex-col justify-center mt-8">
+        <p className="text-lg">{t("general.sourceType")}</p>
+        <div className="flex">
+          <IRadio
+            checked={sourceType === SourceTypeEnum.bank}
+            label={t("general.bank")}
+            onChange={(e) => handleChangeSourceType(SourceTypeEnum.bank)}
+          />
+          <IRadio
+            checked={sourceType === SourceTypeEnum.cash}
+            label={t("general.cash")}
+            onChange={(e) => handleChangeSourceType(SourceTypeEnum.cash)}
+          />
+        </div>
+      </div>
       <Formik
         onSubmit={handleFinish}
         validationSchema={validationSchema}
@@ -94,23 +108,8 @@ const AddSource = () => {
           icon: "",
           note: "",
         }}>
-        {({ handleChange, handleSubmit, values, errors }) => (
+        {({ handleChange, handleSubmit, values, errors, touched }) => (
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-col justify-center mt-8">
-              <p className="text-lg">{t("general.sourceType")}</p>
-              <div className="flex">
-                <IRadio
-                  checked={sourceType === SourceTypeEnum.bank}
-                  label={t("general.bank")}
-                  onChange={(e) => handleChangeSourceType(SourceTypeEnum.bank)}
-                />
-                <IRadio
-                  checked={sourceType === SourceTypeEnum.cash}
-                  label={t("general.cash")}
-                  onChange={(e) => handleChangeSourceType(SourceTypeEnum.cash)}
-                />
-              </div>
-            </div>
             <div className="md:grid-cols-4 grid grid-cols-1 gap-4 mt-4">
               <IInput
                 label={t("general.sourceName")}

@@ -1,5 +1,9 @@
-import React from "react";
-import { TransactionItem } from "components/items";
+import { CategorizedTransaction, TransactionItem } from "components/items";
+
+import { INumberFormat } from "components/general";
+import { groupBy } from "lodash";
+import jMoment from "moment-jalaali";
+import moment from "moment";
 import { useAppSelector } from "store";
 import { useGetTransactionsQuery } from "store/service/transaction";
 
@@ -13,10 +17,17 @@ const Transactions = () => {
   );
 
   if (!data || isFetching) return null;
+
+  const temp = groupBy([...data], (d) =>
+    moment(d.createdAt).startOf("day").format()
+  );
   return (
     <div className="mt-4">
-      {data.map((item) => (
-        <TransactionItem transaction={item} key={item._id} />
+      {Object.keys(temp).map((day) => (
+        <CategorizedTransaction
+          label={jMoment(day).format("jDD / jMM")}
+          transactions={temp[day]}
+        />
       ))}
     </div>
   );

@@ -15,9 +15,9 @@ const App = () => {
       <PersistGate loading={null} persistor={persistor}>
         <Monify />
         {/* <SideBatMenu /> */}
+        <AddTransaction />
         <AddSource />
         <AddCategory />
-        <AddTransaction />
         <ToastContainer position="bottom-right" />
       </PersistGate>
     </Provider>
